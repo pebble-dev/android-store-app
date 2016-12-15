@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Rebble Store</string>
+    <string name="watchfaces">Watchfaces</string>
+    <string name="apps">Apps</string>
+    <string name="search">Search</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <!-- TODO -->
+    <string name="nav_item">nav menu item</string>
+    <string name="version">1.0</string>
+</resources>

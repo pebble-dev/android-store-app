@@ -19,7 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.rebble.store.R;
-import io.rebble.store.fragment.WatchfaceListFragment;
+import io.rebble.store.fragment.WatchFaceListFragment;
+
+/**
+ * Created by zhangqichuan on 15/12/16.
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewpager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new WatchfaceListFragment(), getString(R.string.watchfaces));
-        viewPagerAdapter.addFragment(new WatchfaceListFragment(), getString(R.string.apps));
+        viewPagerAdapter.addFragment(new WatchFaceListFragment(), getString(R.string.watchfaces));
+        viewPagerAdapter.addFragment(new WatchFaceListFragment(), getString(R.string.apps));
         viewPager.setAdapter(viewPagerAdapter);
     }
 

@@ -14,24 +14,16 @@ android {
     dataBinding {
         enabled = true
     }
-    signingConfigs {
-        release {
-            storeFile file("../release.jks")
-            storePassword "pebble"
-            keyAlias "release"
-            keyPassword "pebble"
-        }
-    }
+
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
-final SUPPORT_LIB_VERSION = '25.1.0'
+final SUPPORT_LIB_VERSION = '25.0.0'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

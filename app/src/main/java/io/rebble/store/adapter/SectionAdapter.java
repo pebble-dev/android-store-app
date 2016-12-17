@@ -5,11 +5,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import java.util.List;
 
 import io.rebble.store.R;
+import io.rebble.store.viewmodel.section.CarouselSectionViewModel;
 import io.rebble.store.viewmodel.section.ISectionViewModel;
 import io.rebble.store.viewmodel.section.WatchFaceListSectionViewModel;
 
@@ -31,6 +37,10 @@ public class SectionAdapter extends RecyclerView.Adapter {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.section_watchface_list, parent, false);
             return new WatchFaceListSectionViewHolder(view);
+        } else if (viewType == R.layout.section_carousel) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.section_carousel, parent, false);
+            return new CarouselSectionViewHolder(view);
         }
         return null;
     }
@@ -48,6 +58,17 @@ public class SectionAdapter extends RecyclerView.Adapter {
             viewHolder.watfaceRecyclerView.setLayoutManager(layoutManager);
             viewHolder.nameTextView.setText(viewModel.getName());
             viewHolder.watfaceRecyclerView.setAdapter(new WatchFaceListAdapter(viewModel.getViewModelList()));
+        } else if (viewType == R.layout.section_carousel) {
+            CarouselSectionViewModel viewModel = (CarouselSectionViewModel) model;
+            CarouselSectionViewHolder viewHolder = (CarouselSectionViewHolder) holder;
+            final List<String> images = viewModel.getCarouselImages();
+            viewHolder.carouselView.setPageCount(images.size());
+            viewHolder.carouselView.setImageListener(new ImageListener() {
+                @Override
+                public void setImageForPosition(int position, ImageView imageView) {
+                    Glide.with(imageView.getContext()).load(images.get(position)).into(imageView);
+                }
+            });
         }
     }
 
@@ -70,11 +91,22 @@ public class SectionAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public static class CarouselSectionViewHolder extends RecyclerView.ViewHolder {
+        public CarouselView carouselView;
+
+        public CarouselSectionViewHolder(View itemView) {
+            super(itemView);
+            carouselView = (CarouselView) itemView.findViewById(R.id.carouselView);
+        }
+    }
+
     @Override
     public int getItemViewType(int position) {
         //TODO return other view type i.e. Banner
         if (mSectionList.get(position) instanceof WatchFaceListSectionViewModel) {
             return R.layout.section_watchface_list;
+        } else if (mSectionList.get(position) instanceof CarouselSectionViewModel) {
+            return R.layout.section_carousel;
         }
         return R.layout.section_watchface_list;
     }

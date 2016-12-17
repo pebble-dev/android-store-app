@@ -15,7 +15,7 @@ import java.util.List;
 import io.rebble.store.R;
 import io.rebble.store.adapter.SectionAdapter;
 import io.rebble.store.model.WatchFace;
-import io.rebble.store.viewmodel.WatchFaceViewModel;
+import io.rebble.store.viewmodel.section.CarouselSectionViewModel;
 import io.rebble.store.viewmodel.section.ISectionViewModel;
 import io.rebble.store.viewmodel.section.WatchFaceListSectionViewModel;
 
@@ -40,6 +40,8 @@ public class WatchFaceListFragment extends Fragment {
 
     private void setupRecyclerView(RecyclerView recyclerView) {
         List<ISectionViewModel> sectionViewModels = new ArrayList<>();
+        CarouselSectionViewModel carouselViewModel = new CarouselSectionViewModel();
+        sectionViewModels.add(carouselViewModel);
         for (int i = 0; i < 10; i++) {
             sectionViewModels.add(new WatchFaceListSectionViewModel(("Section " + i).toUpperCase(),
                     getWatchFaceList()));
@@ -62,6 +64,6 @@ public class WatchFaceListFragment extends Fragment {
             }
             list.add(watchFace);
         }
-        return  list;
+        return list;
     }
 }

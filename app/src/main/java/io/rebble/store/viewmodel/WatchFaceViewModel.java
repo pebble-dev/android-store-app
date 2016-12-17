@@ -21,4 +21,8 @@ public class WatchFaceViewModel {
     public String getName() {
         return watchFace.name;
     }
+
+    public String getLikes() {
+        return String.valueOf(watchFace.likes);
+    }
 }

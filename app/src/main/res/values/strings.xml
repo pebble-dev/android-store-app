@@ -9,4 +9,5 @@
     <!-- TODO -->
     <string name="nav_item">nav menu item</string>
     <string name="version">1.0</string>
+    <string name="see_all">SEE ALL</string>
 </resources>

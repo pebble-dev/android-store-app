@@ -14,16 +14,24 @@ android {
     dataBinding {
         enabled = true
     }
-
+    signingConfigs {
+        release {
+            storeFile file("../release.jks")
+            storePassword "pebble"
+            keyAlias "release"
+            keyPassword "pebble"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
-final SUPPORT_LIB_VERSION = '25.0.0'
+final SUPPORT_LIB_VERSION = '25.1.0'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -36,4 +44,5 @@ dependencies {
     compile "com.android.support:design:${SUPPORT_LIB_VERSION}"
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.lapism:searchview:4.0'
+    compile 'com.synnapps:carouselview:0.0.10'
 }

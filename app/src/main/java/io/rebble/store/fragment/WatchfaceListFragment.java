@@ -41,7 +41,8 @@ public class WatchFaceListFragment extends Fragment {
     private void setupRecyclerView(RecyclerView recyclerView) {
         List<ISectionViewModel> sectionViewModels = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            sectionViewModels.add(new WatchFaceListSectionViewModel("Section " + i, getWatchFaceList()));
+            sectionViewModels.add(new WatchFaceListSectionViewModel(("Section " + i).toUpperCase(),
+                    getWatchFaceList()));
         }
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),

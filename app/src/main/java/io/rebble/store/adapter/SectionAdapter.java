@@ -66,6 +66,7 @@ public class SectionAdapter extends RecyclerView.Adapter {
             super(itemView);
             nameTextView = (TextView) itemView.findViewById(R.id.text_name);
             watfaceRecyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerView);
+            watfaceRecyclerView.setNestedScrollingEnabled(false);
         }
     }
 

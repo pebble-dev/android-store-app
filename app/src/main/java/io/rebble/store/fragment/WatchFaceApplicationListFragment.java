@@ -8,10 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.rebble.store.R;
 import io.rebble.store.adapter.SectionAdapter;
@@ -19,7 +22,7 @@ import io.rebble.store.api.Api;
 import io.rebble.store.api.model.Application;
 import io.rebble.store.api.model.ApplicationIndexResult;
 import io.rebble.store.api.model.Collection;
-import io.rebble.store.viewmodel.section.CarouselSectionViewModel;
+import io.rebble.store.viewmodel.section.ApplicationListSectionViewModel;
 import io.rebble.store.viewmodel.section.ISectionViewModel;
 import io.rebble.store.viewmodel.section.WatchFaceListSectionViewModel;
 import rx.Subscriber;
@@ -28,39 +31,54 @@ import rx.Subscriber;
  * Created by zhangqichuan on 15/12/16.
  */
 
-public class WatchFaceListFragment extends Fragment {
+public class WatchFaceApplicationListFragment extends Fragment {
+
+    private static String EXTRA_TYPE = "LOAD_DATA_TYPE";
+    public static int TYPE_WATCHFACES = 1;
+    public static int TYPE_APPS = 2;
 
     private RecyclerView mRecyclerView;
-
+    private ProgressBar mProgressBar;
     private Api mApi = new Api();
+
+    public static WatchFaceApplicationListFragment create(int type) {
+        WatchFaceApplicationListFragment watchFaceListFragment = new WatchFaceApplicationListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(EXTRA_TYPE, type);
+        watchFaceListFragment.setArguments(bundle);
+        return watchFaceListFragment;
+    }
+
+    private WatchFaceApplicationListFragment() {
+
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_watchface_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_watchface_app_list, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        setupRecyclerView(mRecyclerView);
+        mProgressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
         return view;
     }
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+    @Override
+    public void onStart() {
+        super.onStart();
         loadDataFromServer();
     }
 
     private void loadDataFromServer() {
-        List<ISectionViewModel> sectionViewModels = new ArrayList<>();
-        CarouselSectionViewModel carouselViewModel = new CarouselSectionViewModel();
-        sectionViewModels.add(carouselViewModel);
-
+        final boolean isWatchFaceType = getArguments().getInt(EXTRA_TYPE) == TYPE_WATCHFACES;
         Subscriber<ApplicationIndexResult> subscriber = new Subscriber<ApplicationIndexResult>() {
             @Override
             public void onCompleted() {
-
+                mProgressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -72,7 +90,9 @@ public class WatchFaceListFragment extends Fragment {
             @Override
             public void onNext(ApplicationIndexResult applicationIndexResult) {
                 List<Application> applications = applicationIndexResult.applications;
+                Map<String, Application> applicationCache = createApplicationCache(applications);
                 List<Collection> collections = applicationIndexResult.collections;
+
                 List<ISectionViewModel> sectionViewModels = new ArrayList<>();
                 for (int i = 0; i < collections.size(); i++) {
                     Collection collection = collections.get(i);
@@ -80,30 +100,41 @@ public class WatchFaceListFragment extends Fragment {
                     List<Application> featuredApplications = new ArrayList<>();
 
                     for (int j = 0; j < featuredApplicationIds.size(); j++) {
-                        Application application = findApplicationFromList(featuredApplicationIds.get(j), applications);
+                        Application application =
+                                applicationCache.get(featuredApplicationIds.get(j));
                         if (application != null) {
                             featuredApplications.add(application);
                         }
                     }
+                    if (isWatchFaceType) {
+                        sectionViewModels.add(new WatchFaceListSectionViewModel(
+                                (collection.name).toUpperCase(),
+                                featuredApplications));
+                    }
+                    else {
+                        sectionViewModels.add(new ApplicationListSectionViewModel(
+                                (collection.name).toUpperCase(),
+                                featuredApplications));
+                    }
 
-                    sectionViewModels.add(new WatchFaceListSectionViewModel(
-                            (collection.name).toUpperCase(),
-                            featuredApplications));
                 }
                 mRecyclerView.setAdapter(new SectionAdapter(sectionViewModels));
             }
-        };
 
-        mApi.getWatchfaceIndex(subscriber);
+        };
+        if (isWatchFaceType) {
+            mApi.getWatchfaceIndex(subscriber);
+        } else {
+            mApi.getApplicationIndex(subscriber);
+        }
     }
 
-    private Application findApplicationFromList(String appId, List<Application> applications) {
+    private Map<String, Application> createApplicationCache(List<Application> applications) {
+        Map<String, Application> map = new HashMap<>();
         for (int i = 0; i < applications.size(); i++) {
             Application application = applications.get(i);
-            if (application.id.equals(appId)) {
-                return application;
-            }
+            map.put(application.id, application);
         }
-        return null;
+        return map;
     }
 }

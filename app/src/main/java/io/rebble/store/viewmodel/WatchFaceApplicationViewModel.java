@@ -6,11 +6,11 @@ import io.rebble.store.api.model.Application;
  * Created by zhangqichuan on 15/12/16.
  */
 
-public class WatchFaceViewModel {
+public class WatchFaceApplicationViewModel {
 
     private Application watchFace;
 
-    public WatchFaceViewModel(Application watchFace) {
+    public WatchFaceApplicationViewModel(Application watchFace) {
         this.watchFace = watchFace;
     }
 

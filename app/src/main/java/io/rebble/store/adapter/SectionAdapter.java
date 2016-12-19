@@ -15,6 +15,7 @@ import com.synnapps.carouselview.ImageListener;
 import java.util.List;
 
 import io.rebble.store.R;
+import io.rebble.store.viewmodel.section.ApplicationListSectionViewModel;
 import io.rebble.store.viewmodel.section.CarouselSectionViewModel;
 import io.rebble.store.viewmodel.section.ISectionViewModel;
 import io.rebble.store.viewmodel.section.WatchFaceListSectionViewModel;
@@ -33,11 +34,12 @@ public class SectionAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == R.layout.section_watchface_list) {
+        if (viewType == ISectionViewModel.TYPE_WATCHFACES ||
+                viewType == ISectionViewModel.TYPE_APPS) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.section_watchface_list, parent, false);
-            return new WatchFaceListSectionViewHolder(view);
-        } else if (viewType == R.layout.section_carousel) {
+                    .inflate(R.layout.section_watchface_app_list, parent, false);
+            return new ListSectionViewHolder(view);
+        } else if (viewType == ISectionViewModel.TYPE_CAROUSEL) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.section_carousel, parent, false);
             return new CarouselSectionViewHolder(view);
@@ -49,16 +51,25 @@ public class SectionAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ISectionViewModel model = mSectionList.get(position);
         int viewType = getItemViewType(position);
-        if (viewType == R.layout.section_watchface_list) {
+        if (viewType == ISectionViewModel.TYPE_WATCHFACES) {
             WatchFaceListSectionViewModel viewModel = (WatchFaceListSectionViewModel) model;
-            WatchFaceListSectionViewHolder viewHolder = (WatchFaceListSectionViewHolder) holder;
+            ListSectionViewHolder viewHolder = (ListSectionViewHolder) holder;
             RecyclerView.LayoutManager layoutManager = new
                     LinearLayoutManager(viewHolder.nameTextView.getContext(),
                     LinearLayoutManager.HORIZONTAL, false);
-            viewHolder.watfaceRecyclerView.setLayoutManager(layoutManager);
+            viewHolder.recyclerView.setLayoutManager(layoutManager);
             viewHolder.nameTextView.setText(viewModel.getName());
-            viewHolder.watfaceRecyclerView.setAdapter(new WatchFaceListAdapter(viewModel.getViewModelList()));
-        } else if (viewType == R.layout.section_carousel) {
+            viewHolder.recyclerView.setAdapter(new WatchFaceListAdapter(viewModel.getViewModelList()));
+        } else if (viewType == ISectionViewModel.TYPE_APPS) {
+            ApplicationListSectionViewModel viewModel = (ApplicationListSectionViewModel) model;
+            ListSectionViewHolder viewHolder = (ListSectionViewHolder) holder;
+            RecyclerView.LayoutManager layoutManager = new
+                    LinearLayoutManager(viewHolder.nameTextView.getContext(),
+                    LinearLayoutManager.HORIZONTAL, false);
+            viewHolder.recyclerView.setLayoutManager(layoutManager);
+            viewHolder.nameTextView.setText(viewModel.getName());
+            viewHolder.recyclerView.setAdapter(new ApplicationListAdapter(viewModel.getViewModelList()));
+        } else if (viewType == ISectionViewModel.TYPE_CAROUSEL) {
             CarouselSectionViewModel viewModel = (CarouselSectionViewModel) model;
             CarouselSectionViewHolder viewHolder = (CarouselSectionViewHolder) holder;
             final List<String> images = viewModel.getCarouselImages();
@@ -78,20 +89,20 @@ public class SectionAdapter extends RecyclerView.Adapter {
     }
 
 
-    public static class WatchFaceListSectionViewHolder extends RecyclerView.ViewHolder {
+    private static class ListSectionViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameTextView;
-        public RecyclerView watfaceRecyclerView;
+        public RecyclerView recyclerView;
 
-        public WatchFaceListSectionViewHolder(View itemView) {
+        public ListSectionViewHolder(View itemView) {
             super(itemView);
             nameTextView = (TextView) itemView.findViewById(R.id.text_name);
-            watfaceRecyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerView);
-            watfaceRecyclerView.setNestedScrollingEnabled(false);
+            recyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerView);
+            recyclerView.setNestedScrollingEnabled(false);
         }
     }
 
-    public static class CarouselSectionViewHolder extends RecyclerView.ViewHolder {
+    private static class CarouselSectionViewHolder extends RecyclerView.ViewHolder {
         public CarouselView carouselView;
 
         public CarouselSectionViewHolder(View itemView) {
@@ -102,13 +113,8 @@ public class SectionAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        //TODO return other view type i.e. Banner
-        if (mSectionList.get(position) instanceof WatchFaceListSectionViewModel) {
-            return R.layout.section_watchface_list;
-        } else if (mSectionList.get(position) instanceof CarouselSectionViewModel) {
-            return R.layout.section_carousel;
-        }
-        return R.layout.section_watchface_list;
+        ISectionViewModel viewModel = mSectionList.get(position);
+        return viewModel.getType();
     }
 
 }

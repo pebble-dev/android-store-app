@@ -7,7 +7,7 @@
 
         <variable
             name="watchface"
-            type="io.rebble.store.viewmodel.WatchFaceViewModel" />
+            type="io.rebble.store.viewmodel.WatchFaceApplicationViewModel" />
     </data>
 
     <android.support.v7.widget.CardView

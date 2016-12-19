@@ -5,4 +5,8 @@ package io.rebble.store.viewmodel.section;
  */
 
 public interface ISectionViewModel {
+    public int TYPE_APPS = 1;
+    public int TYPE_WATCHFACES = 2;
+    public int TYPE_CAROUSEL= 3;
+    public int getType();
 }

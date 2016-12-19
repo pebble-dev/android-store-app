@@ -24,4 +24,9 @@ public class CarouselSectionViewModel implements ISectionViewModel {
     public List<String> getCarouselImages() {
         return items;
     }
+
+    @Override
+    public int getType() {
+        return ISectionViewModel.TYPE_CAROUSEL;
+    }
 }

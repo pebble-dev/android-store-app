@@ -10,13 +10,13 @@ import io.rebble.store.viewmodel.WatchFaceApplicationViewModel;
  * Created by zhangqichuan on 15/12/16.
  */
 
-public class WatchFaceListSectionViewModel implements ISectionViewModel {
+public class ApplicationListSectionViewModel implements ISectionViewModel {
 
     private List<WatchFaceApplicationViewModel> viewModelList;
     private String name;
 
-    public WatchFaceListSectionViewModel(String name,
-                                         List<Application> list) {
+    public ApplicationListSectionViewModel(String name,
+                                           List<Application> list) {
         viewModelList = new ArrayList<>();
         for (Application application : list) {
             viewModelList.add(new WatchFaceApplicationViewModel(application));
@@ -34,6 +34,6 @@ public class WatchFaceListSectionViewModel implements ISectionViewModel {
 
     @Override
     public int getType() {
-        return ISectionViewModel.TYPE_WATCHFACES;
+        return ISectionViewModel.TYPE_APPS;
     }
 }

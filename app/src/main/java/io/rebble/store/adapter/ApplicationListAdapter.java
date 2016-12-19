@@ -7,22 +7,21 @@ import io.rebble.store.R;
 import io.rebble.store.viewmodel.WatchFaceApplicationViewModel;
 
 /**
- * Created by zhangqichuan on 15/12/16.
+ * Created by zhangqichuan on 19/12/16.
  */
 
-public class WatchFaceListAdapter extends DataBindingBaseAdapter<WatchFaceApplicationViewModel> {
-    public WatchFaceListAdapter(List<WatchFaceApplicationViewModel> mList) {
+public class ApplicationListAdapter extends DataBindingBaseAdapter<WatchFaceApplicationViewModel> {
+    public ApplicationListAdapter(List<WatchFaceApplicationViewModel> mList) {
         super(mList);
     }
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.item_watchface;
+        return R.layout.item_app;
     }
 
     @Override
     protected int getBRResId() {
-        return BR.watchface;
+        return BR.app;
     }
-
 }

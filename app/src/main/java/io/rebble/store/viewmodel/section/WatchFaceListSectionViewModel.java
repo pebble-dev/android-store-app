@@ -3,7 +3,7 @@ package io.rebble.store.viewmodel.section;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.rebble.store.model.WatchFace;
+import io.rebble.store.api.model.Application;
 import io.rebble.store.viewmodel.WatchFaceViewModel;
 
 /**
@@ -16,9 +16,9 @@ public class WatchFaceListSectionViewModel implements ISectionViewModel {
 
     private String name;
 
-    public WatchFaceListSectionViewModel(String name, List<WatchFace> list) {
+    public WatchFaceListSectionViewModel(String name, List<Application> list) {
         viewModelList = new ArrayList<>();
-        for (WatchFace watchFace : list) {
+        for (Application watchFace : list) {
             viewModelList.add(new WatchFaceViewModel(watchFace));
         }
         this.name = name;

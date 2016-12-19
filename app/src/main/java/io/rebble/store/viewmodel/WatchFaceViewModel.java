@@ -1,6 +1,6 @@
 package io.rebble.store.viewmodel;
 
-import io.rebble.store.model.WatchFace;
+import io.rebble.store.api.model.Application;
 
 /**
  * Created by zhangqichuan on 15/12/16.
@@ -8,21 +8,21 @@ import io.rebble.store.model.WatchFace;
 
 public class WatchFaceViewModel {
 
-    private WatchFace watchFace;
+    private Application watchFace;
 
-    public WatchFaceViewModel(WatchFace watchFace) {
+    public WatchFaceViewModel(Application watchFace) {
         this.watchFace = watchFace;
     }
 
     public String getImageUrl() {
-        return watchFace.imageUrl;
+        return watchFace.screenshotImages.get(0);
     }
 
     public String getName() {
-        return watchFace.name;
+        return watchFace.title;
     }
 
     public String getLikes() {
-        return String.valueOf(watchFace.likes);
+        return String.valueOf(watchFace.hearts);
     }
 }

@@ -49,10 +49,6 @@ public class WatchFaceApplicationListFragment extends Fragment {
         return watchFaceListFragment;
     }
 
-    private WatchFaceApplicationListFragment() {
-
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -68,8 +64,8 @@ public class WatchFaceApplicationListFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         loadDataFromServer();
     }
 

@@ -20,6 +20,8 @@
         </activity>
 
         <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.WatchFaceApplicationDetailsActivity" />
+
     </application>
 
 </manifest>

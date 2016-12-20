@@ -1,6 +1,7 @@
 
 package io.rebble.store.api.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,7 +99,7 @@ public class Application implements Parcelable
     @JsonProperty("compatibility")
     public Compatibility compatibility;
     @JsonProperty("ios_companion")
-    public Object iosCompanion;
+    public IosCompanion iosCompanion;
     @JsonProperty("android_companion")
     public AndroidCompanion androidCompanion;
     @JsonIgnore
@@ -120,7 +121,9 @@ public class Application implements Parcelable
             instance.source = ((String) in.readValue((String.class.getClassLoader())));
             instance.website = ((String) in.readValue((String.class.getClassLoader())));
             instance.bannerImage = ((String) in.readValue((String.class.getClassLoader())));
+            instance.screenshotImages = new ArrayList<>();
             in.readList(instance.screenshotImages, (String.class.getClassLoader()));
+            instance.headerImages = new ArrayList<>();
             in.readList(instance.headerImages, (String.class.getClassLoader()));
             instance.listImage = ((String) in.readValue((String.class.getClassLoader())));
             instance.rating = ((Integer) in.readValue((Integer.class.getClassLoader())));
@@ -136,7 +139,7 @@ public class Application implements Parcelable
             instance.categoryColor = ((String) in.readValue((String.class.getClassLoader())));
             instance.developerId = ((String) in.readValue((String.class.getClassLoader())));
             instance.compatibility = ((Compatibility) in.readValue((Compatibility.class.getClassLoader())));
-            instance.iosCompanion = ((Object) in.readValue((Object.class.getClassLoader())));
+            instance.iosCompanion = ((IosCompanion) in.readValue((IosCompanion.class.getClassLoader())));
             instance.androidCompanion = ((AndroidCompanion) in.readValue((AndroidCompanion.class.getClassLoader())));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
             return instance;

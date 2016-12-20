@@ -1,6 +1,7 @@
 
 package io.rebble.store.api.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +61,12 @@ public class Category implements Parcelable
             instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.href = ((String) in.readValue((String.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
+            instance.collections = new ArrayList<>();
+            instance.customBanners = new ArrayList<>();
+            instance.featuredApplications = new ArrayList<>();
+            instance.topRecentApplications = new ArrayList<>();
+            instance.topHeartedApplications = new ArrayList<>();
+            instance.categoryLinks = new ArrayList<>();
             in.readList(instance.collections, (String.class.getClassLoader()));
             in.readList(instance.customBanners, (Object.class.getClassLoader()));
             in.readList(instance.featuredApplications, (String.class.getClassLoader()));

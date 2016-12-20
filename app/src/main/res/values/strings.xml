@@ -10,4 +10,6 @@
     <string name="nav_item">nav menu item</string>
     <string name="version">1.0</string>
     <string name="see_all">SEE ALL</string>
+
+    <string name="transition_name_image" translatable="false">TRANSITION:image</string>
 </resources>

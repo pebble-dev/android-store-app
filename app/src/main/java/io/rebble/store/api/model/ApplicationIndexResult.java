@@ -1,6 +1,7 @@
 
 package io.rebble.store.api.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,11 @@ public class ApplicationIndexResult implements Parcelable
         })
         public ApplicationIndexResult createFromParcel(Parcel in) {
             ApplicationIndexResult instance = new ApplicationIndexResult();
+            instance.collections = new ArrayList<>();
+            instance.applications = new ArrayList<>();
+            instance.customBanners = new ArrayList<>();
+            instance.categoryLinks = new ArrayList<>();
+            instance.categories = new ArrayList<>();
             in.readList(instance.collections, (io.rebble.store.api.model.Collection.class.getClassLoader()));
             in.readList(instance.applications, (Application.class.getClassLoader()));
             in.readList(instance.customBanners, (Object.class.getClassLoader()));

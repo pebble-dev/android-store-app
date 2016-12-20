@@ -17,14 +17,14 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/item_width"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp">
 
             <ImageView
                 android:id="@+id/img"
-                android:layout_width="144dp"
-                android:layout_height="168dp"
+                android:layout_width="@dimen/item_width"
+                android:layout_height="@dimen/item_height"
                 app:imageUrl="@{app.imageUrl}" />
 
             <TextView
@@ -38,6 +38,7 @@
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:text="@{app.name}"
+                android:lines="1"
                 android:textColor="@color/textColorPrimary"
                 tools:text="Awesome App" />
 
@@ -52,6 +53,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:transitionName="@string/transition_name_image"
                     android:src="@drawable/ic_heart" />
 
                 <TextView

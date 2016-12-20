@@ -8,21 +8,25 @@ import io.rebble.store.api.model.Application;
 
 public class WatchFaceApplicationViewModel {
 
-    private Application watchFace;
+    private final Application application;
 
-    public WatchFaceApplicationViewModel(Application watchFace) {
-        this.watchFace = watchFace;
+    public WatchFaceApplicationViewModel(Application application) {
+        this.application = application;
     }
 
     public String getImageUrl() {
-        return watchFace.screenshotImages.get(0);
+        return application.screenshotImages.get(0);
     }
 
     public String getName() {
-        return watchFace.title;
+        return application.title;
     }
 
     public String getLikes() {
-        return String.valueOf(watchFace.hearts);
+        return String.valueOf(application.hearts);
+    }
+
+    public Application getDataModel() {
+        return application;
     }
 }

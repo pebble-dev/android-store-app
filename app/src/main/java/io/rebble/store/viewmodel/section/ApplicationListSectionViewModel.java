@@ -10,26 +10,10 @@ import io.rebble.store.viewmodel.WatchFaceApplicationViewModel;
  * Created by zhangqichuan on 15/12/16.
  */
 
-public class ApplicationListSectionViewModel implements ISectionViewModel {
+public class ApplicationListSectionViewModel extends WatchFaceListSectionViewModel {
 
-    private List<WatchFaceApplicationViewModel> viewModelList;
-    private String name;
-
-    public ApplicationListSectionViewModel(String name,
-                                           List<Application> list) {
-        viewModelList = new ArrayList<>();
-        for (Application application : list) {
-            viewModelList.add(new WatchFaceApplicationViewModel(application));
-        }
-        this.name = name;
-    }
-
-    public List<WatchFaceApplicationViewModel> getViewModelList() {
-        return viewModelList;
-    }
-
-    public String getName() {
-        return name;
+    public ApplicationListSectionViewModel(String name, List<Application> list) {
+        super(name, list);
     }
 
     @Override

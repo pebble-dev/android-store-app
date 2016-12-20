@@ -1,6 +1,7 @@
 
 package io.rebble.store.api.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,7 @@ public class Collection implements Parcelable
             instance.href = ((String) in.readValue((String.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
             instance.featured = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.applications = new ArrayList<>();
             in.readList(instance.applications, (String.class.getClassLoader()));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
             return instance;

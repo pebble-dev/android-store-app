@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.List;
 
 import io.rebble.store.R;
+import io.rebble.store.util.BindingAdapterUtil;
 import io.rebble.store.viewmodel.section.ApplicationListSectionViewModel;
 import io.rebble.store.viewmodel.section.CarouselSectionViewModel;
 import io.rebble.store.viewmodel.section.ISectionViewModel;
@@ -77,7 +77,7 @@ public class SectionAdapter extends RecyclerView.Adapter {
             viewHolder.carouselView.setImageListener(new ImageListener() {
                 @Override
                 public void setImageForPosition(int position, ImageView imageView) {
-                    Glide.with(imageView.getContext()).load(images.get(position)).into(imageView);
+                    BindingAdapterUtil.loadImage(imageView, images.get(position));
                 }
             });
         }

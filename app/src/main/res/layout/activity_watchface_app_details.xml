@@ -28,7 +28,7 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:expandedTitleMarginEnd="64dp"
                 app:expandedTitleMarginStart="48dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:layout_scrollFlags="scroll|snap|enterAlwaysCollapsed"
                 app:title="  ">
 
                 <ImageView
@@ -55,16 +55,7 @@
             android:background="@color/white"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <io.rebble.store.view.WatchFaceApplicationSliderView
-                    app:imageUrls="@{app.screenshotImageUrls}"
-                    app:coverImageUrl="@{app.firstScreenShotImageUrl}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </android.support.constraint.ConstraintLayout>
+            <include layout="@layout/layout_watchface_app_details" bind:app="@{app}"/>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
 </layout>

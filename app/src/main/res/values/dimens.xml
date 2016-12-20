@@ -8,4 +8,8 @@
     <dimen name="item_height">168dp</dimen>
     <dimen name="slider_width">244dp</dimen>
     <dimen name="slider_height">350dp</dimen>
+
+    <!-- Text size -->
+    <dimen name="txt_subheading">16sp</dimen>
+    <dimen name="txt_body">14sp</dimen>
 </resources>

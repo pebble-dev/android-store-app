@@ -20,4 +20,16 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+
+    <style name="WhiteButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/grey</item>
+        <item name="colorButtonNormal">@color/white</item>
+    </style>
+
+    <style name="text_details_label">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/txt_subheading</item>
+    </style>
 </resources>

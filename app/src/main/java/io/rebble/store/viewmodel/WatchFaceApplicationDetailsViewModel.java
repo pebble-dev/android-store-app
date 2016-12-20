@@ -23,8 +23,12 @@ public class WatchFaceApplicationDetailsViewModel {
         return application.bannerImage;
     }
 
-    public String getProfileImageUrl() {
-        return application.screenshotImages.get(0);
+    public String getTitle() {
+        return application.title.toUpperCase();
+    }
+
+    public String getAuthor() {
+        return application.author;
     }
 
     public List<String> getScreenshotImageUrls() {
@@ -33,5 +37,21 @@ public class WatchFaceApplicationDetailsViewModel {
 
     public String getFirstScreenShotImageUrl() {
         return application.screenshotImages.get(0);
+    }
+
+    public String getDescription() {
+        return application.description;
+    }
+
+    public String getCategory() {
+        return application.categoryName;
+    }
+
+    public String getUpdated() {
+        return application.publishedDate;
+    }
+
+    public String getVersion() {
+        return application.version;
     }
 }

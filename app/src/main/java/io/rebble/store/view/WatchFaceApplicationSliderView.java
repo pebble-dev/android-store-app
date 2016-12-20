@@ -2,7 +2,6 @@ package io.rebble.store.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.databinding.BindingAdapter;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.synnapps.carouselview.PageIndicator;
 
 import io.rebble.store.R;
 import io.rebble.store.util.BindingAdapterUtil;
@@ -24,6 +25,7 @@ public class WatchFaceApplicationSliderView extends RelativeLayout {
 
     private ViewPager mViewPager;
     private ImageView mCoverImage;
+    private PageIndicator mPageIndicator;
 
     public WatchFaceApplicationSliderView(Context context) {
         super(context);
@@ -44,7 +46,7 @@ public class WatchFaceApplicationSliderView extends RelativeLayout {
         LayoutInflater.from(getContext()).inflate(R.layout.view_watchface_app_slider, this);
         this.mViewPager = (ViewPager) findViewById(R.id.viewpager);
         this.mCoverImage = (ImageView) findViewById(R.id.img_cover);
-
+        this.mPageIndicator = (PageIndicator) findViewById(R.id.indicator);
         if (getContext() instanceof Activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
@@ -114,6 +116,7 @@ public class WatchFaceApplicationSliderView extends RelativeLayout {
 
     public void setViewPagerAdapter(PagerAdapter pagerAdapter) {
         mViewPager.setAdapter(pagerAdapter);
+        mPageIndicator.setViewPager(mViewPager);
     }
 
     public void setCoverImageUrl(String url) {

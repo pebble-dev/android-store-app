@@ -10,6 +10,14 @@
     <string name="nav_item">nav menu item</string>
     <string name="version">1.0</string>
     <string name="see_all">SEE ALL</string>
+    
+    <!-- WatchFace Application Details Page -->
+    <string name="add">ADD</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="developer">DEVELOPER</string>
+    <string name="category">CATEGORY</string>
+    <string name="updated">UPDATED</string>
+    <string name="veresion">VERSION</string>
 
     <string name="transition_name_image" translatable="false">TRANSITION:image</string>
 </resources>

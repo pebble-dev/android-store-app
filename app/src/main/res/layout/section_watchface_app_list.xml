@@ -21,7 +21,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:textColor="@color/colorAccent"
-            android:textSize="16sp"
+            android:textSize="@dimen/txt_subheading"
             tools:text="FRESH PICKS" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_marginRight="16dp"
             android:text="@string/see_all"
             android:textColor="@color/textColorPrimary"
-            android:textSize="16sp" />
+            android:textSize="@dimen/txt_subheading" />
     </RelativeLayout>
 
 

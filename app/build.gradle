@@ -1,4 +1,19 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 
 android {
     compileSdkVersion 25
@@ -63,4 +78,10 @@ dependencies {
     compile 'com.lapism:searchview:4.0'
     compile 'com.synnapps:carouselview:0.0.10'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
+        transitive = true;
+    }
+    compile('com.crashlytics.sdk.android:answers:1.3.10@aar') {
+        transitive = true;
+    }
 }

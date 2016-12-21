@@ -22,6 +22,9 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.WatchFaceApplicationDetailsActivity" />
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="046c17c8f1bb3b7b76aaa8150aefa6bd54c2dd28" />
     </application>
 
 </manifest>

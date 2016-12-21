@@ -14,6 +14,7 @@ import com.synnapps.carouselview.ImageListener;
 import java.util.List;
 
 import io.rebble.store.R;
+import io.rebble.store.command.LaunchWatchFaceApplicationDetailsActivityCommand;
 import io.rebble.store.util.BindingAdapterUtil;
 import io.rebble.store.viewmodel.WatchFaceApplicationViewModel;
 import io.rebble.store.viewmodel.section.ApplicationListSectionViewModel;
@@ -77,7 +78,14 @@ public class SectionAdapter extends RecyclerView.Adapter {
             viewHolder.carouselView.setPageCount(apps.size());
             viewHolder.carouselView.setImageListener(new ImageListener() {
                 @Override
-                public void setImageForPosition(int position, ImageView imageView) {
+                public void setImageForPosition(final int position, ImageView imageView) {
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            new LaunchWatchFaceApplicationDetailsActivityCommand(
+                                            view.getContext(), apps.get(position)).execute();
+                        }
+                    });
                     BindingAdapterUtil.loadImage(imageView, apps.get(position).getBackdropImageUrl());
                 }
             });

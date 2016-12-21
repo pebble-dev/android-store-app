@@ -15,9 +15,10 @@ import java.util.List;
 
 import io.rebble.store.R;
 import io.rebble.store.util.BindingAdapterUtil;
+import io.rebble.store.viewmodel.WatchFaceApplicationViewModel;
 import io.rebble.store.viewmodel.section.ApplicationListSectionViewModel;
 import io.rebble.store.viewmodel.section.CarouselSectionViewModel;
-import io.rebble.store.viewmodel.section.ISectionViewModel;
+import io.rebble.store.viewmodel.section.BaseSectionViewModel;
 import io.rebble.store.viewmodel.section.WatchFaceListSectionViewModel;
 
 /**
@@ -26,20 +27,20 @@ import io.rebble.store.viewmodel.section.WatchFaceListSectionViewModel;
 
 public class SectionAdapter extends RecyclerView.Adapter {
 
-    private List<ISectionViewModel> mSectionList;
+    private List<BaseSectionViewModel> mSectionList;
 
-    public SectionAdapter(List<ISectionViewModel> mSectionList) {
+    public SectionAdapter(List<BaseSectionViewModel> mSectionList) {
         this.mSectionList = mSectionList;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == ISectionViewModel.TYPE_WATCHFACES ||
-                viewType == ISectionViewModel.TYPE_APPS) {
+        if (viewType == BaseSectionViewModel.TYPE_WATCHFACES ||
+                viewType == BaseSectionViewModel.TYPE_APPS) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.section_watchface_app_list, parent, false);
             return new ListSectionViewHolder(view);
-        } else if (viewType == ISectionViewModel.TYPE_CAROUSEL) {
+        } else if (viewType == BaseSectionViewModel.TYPE_CAROUSEL) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.section_carousel, parent, false);
             return new CarouselSectionViewHolder(view);
@@ -49,9 +50,9 @@ public class SectionAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ISectionViewModel model = mSectionList.get(position);
+        BaseSectionViewModel model = mSectionList.get(position);
         int viewType = getItemViewType(position);
-        if (viewType == ISectionViewModel.TYPE_WATCHFACES) {
+        if (viewType == BaseSectionViewModel.TYPE_WATCHFACES) {
             WatchFaceListSectionViewModel viewModel = (WatchFaceListSectionViewModel) model;
             ListSectionViewHolder viewHolder = (ListSectionViewHolder) holder;
             RecyclerView.LayoutManager layoutManager = new
@@ -60,7 +61,7 @@ public class SectionAdapter extends RecyclerView.Adapter {
             viewHolder.recyclerView.setLayoutManager(layoutManager);
             viewHolder.nameTextView.setText(viewModel.getName());
             viewHolder.recyclerView.setAdapter(new WatchFaceListAdapter(viewModel.getViewModelList()));
-        } else if (viewType == ISectionViewModel.TYPE_APPS) {
+        } else if (viewType == BaseSectionViewModel.TYPE_APPS) {
             ApplicationListSectionViewModel viewModel = (ApplicationListSectionViewModel) model;
             ListSectionViewHolder viewHolder = (ListSectionViewHolder) holder;
             RecyclerView.LayoutManager layoutManager = new
@@ -69,15 +70,15 @@ public class SectionAdapter extends RecyclerView.Adapter {
             viewHolder.recyclerView.setLayoutManager(layoutManager);
             viewHolder.nameTextView.setText(viewModel.getName());
             viewHolder.recyclerView.setAdapter(new ApplicationListAdapter(viewModel.getViewModelList()));
-        } else if (viewType == ISectionViewModel.TYPE_CAROUSEL) {
+        } else if (viewType == BaseSectionViewModel.TYPE_CAROUSEL) {
             CarouselSectionViewModel viewModel = (CarouselSectionViewModel) model;
             CarouselSectionViewHolder viewHolder = (CarouselSectionViewHolder) holder;
-            final List<String> images = viewModel.getCarouselImages();
-            viewHolder.carouselView.setPageCount(images.size());
+            final List<WatchFaceApplicationViewModel> apps = viewModel.getViewModelList();
+            viewHolder.carouselView.setPageCount(apps.size());
             viewHolder.carouselView.setImageListener(new ImageListener() {
                 @Override
                 public void setImageForPosition(int position, ImageView imageView) {
-                    BindingAdapterUtil.loadImage(imageView, images.get(position));
+                    BindingAdapterUtil.loadImage(imageView, apps.get(position).getBackdropImageUrl());
                 }
             });
         }
@@ -113,7 +114,7 @@ public class SectionAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        ISectionViewModel viewModel = mSectionList.get(position);
+        BaseSectionViewModel viewModel = mSectionList.get(position);
         return viewModel.getType();
     }
 

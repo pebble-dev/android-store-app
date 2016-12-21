@@ -26,6 +26,8 @@
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="48dp"
         app:strokeColor="@color/white"

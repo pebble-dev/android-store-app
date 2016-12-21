@@ -23,7 +23,8 @@ import io.rebble.store.api.model.Application;
 import io.rebble.store.api.model.ApplicationIndexResult;
 import io.rebble.store.api.model.Collection;
 import io.rebble.store.viewmodel.section.ApplicationListSectionViewModel;
-import io.rebble.store.viewmodel.section.ISectionViewModel;
+import io.rebble.store.viewmodel.section.CarouselSectionViewModel;
+import io.rebble.store.viewmodel.section.BaseSectionViewModel;
 import io.rebble.store.viewmodel.section.WatchFaceListSectionViewModel;
 import rx.Subscriber;
 
@@ -89,25 +90,25 @@ public class WatchFaceApplicationListFragment extends Fragment {
                 Map<String, Application> applicationCache = createApplicationCache(applications);
                 List<Collection> collections = applicationIndexResult.collections;
 
-                List<ISectionViewModel> sectionViewModels = new ArrayList<>();
+                List<BaseSectionViewModel> sectionViewModels = new ArrayList<>();
+
+                //Banner, use the first collection for now
+                Collection bannerCollection = collections.get(0);
+                CarouselSectionViewModel carouselSectionViewModel =
+                        new CarouselSectionViewModel("",
+                                getApplicationListFromCollection(bannerCollection, applicationCache));
+
+                sectionViewModels.add(carouselSectionViewModel);
+
                 for (int i = 0; i < collections.size(); i++) {
                     Collection collection = collections.get(i);
-                    List<String> featuredApplicationIds = collection.applications;
-                    List<Application> featuredApplications = new ArrayList<>();
-
-                    for (int j = 0; j < featuredApplicationIds.size(); j++) {
-                        Application application =
-                                applicationCache.get(featuredApplicationIds.get(j));
-                        if (application != null) {
-                            featuredApplications.add(application);
-                        }
-                    }
+                    List<Application> featuredApplications
+                            = getApplicationListFromCollection(collection, applicationCache);
                     if (isWatchFaceType) {
                         sectionViewModels.add(new WatchFaceListSectionViewModel(
                                 (collection.name).toUpperCase(),
                                 featuredApplications));
-                    }
-                    else {
+                    } else {
                         sectionViewModels.add(new ApplicationListSectionViewModel(
                                 (collection.name).toUpperCase(),
                                 featuredApplications));
@@ -123,6 +124,21 @@ public class WatchFaceApplicationListFragment extends Fragment {
         } else {
             mApi.getApplicationIndex(subscriber);
         }
+    }
+
+    private List<Application> getApplicationListFromCollection(Collection collection,
+                                                               Map<String, Application> applicationCache){
+        List<String> featuredApplicationIds = collection.applications;
+        List<Application> applications = new ArrayList<>();
+
+        for (int j = 0; j < featuredApplicationIds.size(); j++) {
+            Application application =
+                    applicationCache.get(featuredApplicationIds.get(j));
+            if (application != null) {
+                applications.add(application);
+            }
+        }
+        return applications;
     }
 
     private Map<String, Application> createApplicationCache(List<Application> applications) {

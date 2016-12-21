@@ -49,7 +49,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="@string/add"
-                android:theme="@style/WhiteButton" />
+                android:theme="@style/WhiteButton"
+                tools:ignore="RelativeOverlap" />
         </RelativeLayout>
 
         <io.rebble.store.view.WatchFaceApplicationSliderView
@@ -58,14 +59,8 @@
             app:coverImageUrl="@{app.firstScreenShotImageUrl}"
             app:imageUrls="@{app.screenshotImageUrls}" />
 
-        <TextView
-            style="@style/text_details_label"
-            android:text="@string/description" />
+        <include layout="@layout/layout_watchface_app_text_info" bind:app="@{app}"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{app.description}" />
     </LinearLayout>
 
 </layout>

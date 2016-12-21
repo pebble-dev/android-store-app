@@ -17,7 +17,7 @@
     <string name="developer">DEVELOPER</string>
     <string name="category">CATEGORY</string>
     <string name="updated">UPDATED</string>
-    <string name="veresion">VERSION</string>
+    <string name="app_version">VERSION</string>
 
     <string name="transition_name_image" translatable="false">TRANSITION:image</string>
 </resources>

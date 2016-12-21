@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme.Base" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <!-- Customize your theme here. -->
@@ -29,7 +29,14 @@
     <style name="text_details_label">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:textColor">@color/grey</item>
+        <item name="android:textColor">@android:color/tertiary_text_light</item>
         <item name="android:textSize">@dimen/txt_subheading</item>
+    </style>
+
+    <style name="text_details_value">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">@dimen/txt_body</item>
     </style>
 </resources>

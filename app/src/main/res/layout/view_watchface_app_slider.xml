@@ -27,8 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="56dp"
-        app:strokeColor="#FF777777"
+        android:layout_marginBottom="48dp"
+        app:strokeColor="@color/white"
         app:radius="4dp"
         app:strokeWidth="1dp" />
 

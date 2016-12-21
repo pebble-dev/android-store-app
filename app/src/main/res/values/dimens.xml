@@ -4,10 +4,10 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="banner_height">160dp</dimen>
     <dimen name="appbar_height">56dp</dimen>
-    <dimen name="item_width">144dp</dimen>
-    <dimen name="item_height">168dp</dimen>
-    <dimen name="slider_width">244dp</dimen>
-    <dimen name="slider_height">350dp</dimen>
+    <dimen name="item_width">96dp</dimen>
+    <dimen name="item_height">112dp</dimen>
+    <dimen name="slider_width">162dp</dimen>
+    <dimen name="slider_height">233dp</dimen>
 
     <!-- Text size -->
     <dimen name="txt_subheading">16sp</dimen>

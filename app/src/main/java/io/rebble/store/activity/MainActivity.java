@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mSearchView = (SearchView) findViewById(R.id.searchView);
 
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         setupViewpager(mViewPager);
         mTabLayout.setupWithViewPager(mViewPager);
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+        mActionBarDrawerToggle.setDrawerIndicatorEnabled(false);
         drawerLayout.addDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
     }

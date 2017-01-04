@@ -22,7 +22,9 @@
             android:layout_marginStart="16dp"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/txt_subheading"
-            tools:text="FRESH PICKS" />
+            android:layout_toLeftOf="@+id/text_see_all"
+            android:layout_toStartOf="@+id/text_see_all"
+            tools:text="FRESH PICK" />
 
         <TextView
             android:id="@+id/text_see_all"

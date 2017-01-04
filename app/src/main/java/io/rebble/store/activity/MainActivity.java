@@ -1,5 +1,8 @@
 package io.rebble.store.activity;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.lapism.searchview.SearchView;
@@ -18,8 +22,10 @@ import com.lapism.searchview.SearchView;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.rebble.store.BR;
 import io.rebble.store.R;
 import io.rebble.store.fragment.WatchFaceApplicationListFragment;
+import io.rebble.store.viewmodel.MainActivityViewModel;
 
 /**
  * Created by zhangqichuan on 15/12/16.
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private DrawerLayout mDrawerLayout;
     private SearchView mSearchView;
+    private NavigationView mNavigationView;
 
     private ActionBarDrawerToggle mActionBarDrawerToggle;
 
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mSearchView = (SearchView) findViewById(R.id.searchView);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
 
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
@@ -52,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout.setupWithViewPager(mViewPager);
         setupDrawer(mDrawerLayout, mToolbar, mSearchView);
         setupSearchView(mSearchView, mDrawerLayout);
+        setupNavigationView(mNavigationView);
     }
 
     private void setupDrawer(DrawerLayout drawerLayout, Toolbar toolbar, final SearchView searchView) {
@@ -83,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START); // finish();
             }
         });
+    }
+
+    private void setupNavigationView(NavigationView navigationView) {
+        ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(this),
+                R.layout.nav_header, navigationView, false);
+        dataBinding.setVariable(BR.main_activity_model, new MainActivityViewModel());
+        dataBinding.executePendingBindings();
+        navigationView.addHeaderView(dataBinding.getRoot());
     }
 
     @Override

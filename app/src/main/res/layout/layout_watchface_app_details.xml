@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="app"
+            type="io.rebble.store.viewmodel.WatchFaceApplicationDetailsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{app.title}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_subheading"
+                tools:text="Awesome app" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_title"
+                android:text="@{app.author}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_body"
+                tools:text="Qichuan" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/add"
+                android:theme="@style/WhiteButton"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
+
+        <io.rebble.store.view.WatchFaceApplicationSliderView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:coverImageUrl="@{app.firstScreenShotImageUrl}"
+            app:imageUrls="@{app.screenshotImageUrls}" />
+
+        <include layout="@layout/layout_watchface_app_text_info" bind:app="@{app}"/>
+
+    </LinearLayout>
+
+</layout>

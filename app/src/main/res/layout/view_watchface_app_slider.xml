@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="@dimen/slider_width"
+        android:layout_height="@dimen/slider_height"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/slider_background_time" />
+
+    <ImageView
+        android:id="@+id/img_cover"
+        android:layout_width="@dimen/item_width"
+        android:layout_height="@dimen/item_height"
+        android:layout_gravity="center"
+        android:transitionName="@string/transition_name_image" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/slider_height" />
+
+    <com.synnapps.carouselview.CirclePageIndicator
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="48dp"
+        app:strokeColor="@color/white"
+        app:radius="4dp"
+        app:strokeWidth="1dp" />
+
+</FrameLayout>

@@ -1,0 +1,15 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="banner_height">160dp</dimen>
+    <dimen name="appbar_height">56dp</dimen>
+    <dimen name="item_width">96dp</dimen>
+    <dimen name="item_height">112dp</dimen>
+    <dimen name="slider_width">162dp</dimen>
+    <dimen name="slider_height">233dp</dimen>
+
+    <!-- Text size -->
+    <dimen name="txt_subheading">16sp</dimen>
+    <dimen name="txt_body">14sp</dimen>
+</resources>

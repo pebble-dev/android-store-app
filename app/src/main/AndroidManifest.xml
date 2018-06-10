@@ -22,7 +22,14 @@
         </activity>
 
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.WatchFaceApplicationDetailsActivity" />
+        <activity android:name=".activity.WatchFaceApplicationDetailsActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="rebble" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"

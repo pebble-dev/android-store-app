@@ -1,12 +1,16 @@
 package io.rebble.store.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import io.rebble.store.BR;
 import io.rebble.store.R;
@@ -30,10 +34,19 @@ public class WatchFaceApplicationDetailsActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getIntent() != null) {
+            if (Intent.ACTION_VIEW.equals(getIntent().getAction())) {
+                Uri uri = getIntent().getData();
+                String appId = uri.getQueryParameter("app");
+                Toast.makeText(getApplicationContext(),appId, Toast.LENGTH_SHORT).show();
+            }
+            else {
+                if (getIntent().hasExtra(EXTRA_WATCHFACE_APP_DETAILS)) {
+                    Application application = getIntent().getParcelableExtra(EXTRA_WATCHFACE_APP_DETAILS);
+                    viewDataBinding.setVariable(BR.app, new WatchFaceApplicationDetailsViewModel((application)));
+                }
+            }
 
-        if (getIntent() != null && getIntent().hasExtra(EXTRA_WATCHFACE_APP_DETAILS)) {
-            Application application = getIntent().getParcelableExtra(EXTRA_WATCHFACE_APP_DETAILS);
-            viewDataBinding.setVariable(BR.app, new WatchFaceApplicationDetailsViewModel((application)));
         }
     }
 

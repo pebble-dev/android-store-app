@@ -1,3 +1,5 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
@@ -7,8 +9,7 @@ buildscript {
         classpath 'io.fabric.tools:gradle:1.+'
     }
 }
-apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
+
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -16,13 +17,14 @@ repositories {
 
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "io.rebble.store"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 3
+        multiDexEnabled true
         versionName "1.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -53,7 +55,7 @@ android {
     }
 }
 
-final SUPPORT_LIB_VERSION = '25.1.0'
+final SUPPORT_LIB_VERSION = '26.1.0'
 final JACKSON_VERSION = '2.8.5'
 final RETROFIT_VERSION = '2.1.0'
 
@@ -65,6 +67,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
+    compile "com.android.support:cardview-v7:26.1.0"
     compile "com.android.support:design:${SUPPORT_LIB_VERSION}"
     compile "com.fasterxml.jackson.core:jackson-core:${JACKSON_VERSION}"
     compile "com.fasterxml.jackson.core:jackson-annotations:${JACKSON_VERSION}"
@@ -77,7 +80,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.lapism:searchview:4.0'
     compile 'com.synnapps:carouselview:0.0.10'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile 'com.android.support.constraint:constraint-layout:1.1.1'
     compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
         transitive = true;
     }

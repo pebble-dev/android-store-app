@@ -10,7 +10,7 @@ The android client app to access pebble apps from store.rebble.io app store.
 |--------------------------------------|-----------------------------------------|
 | ![](https://i.imgur.com/HCPS18S.png) | ![](https://i.imgur.com/sUe9pxs.png)    |
 
-##Libraries:
+## Libraries:
 
 - jackson
 - rxandroid
@@ -19,3 +19,8 @@ The android client app to access pebble apps from store.rebble.io app store.
 - searchview
 - carouselview
 - crashlytics
+
+
+## Contributing:
+
+[Join our discord](http://discord.gg/aRUAYFN). \#Mobile-apps channel.

@@ -54,4 +54,20 @@ public class WatchFaceApplicationDetailsViewModel {
     public String getVersion() {
         return application.version;
     }
+
+    public String getUUID() {
+        return application.uuid;
+    }
+
+    public String getPbwFile() {
+        return application.pbwFile;
+    }
+
+    public String getWebsite() {
+        return application.website;
+    }
+
+    public String getSource() {
+        return application.source;
+    }
 }

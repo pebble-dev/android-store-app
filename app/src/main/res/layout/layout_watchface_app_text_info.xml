@@ -23,6 +23,32 @@
             android:text="@{app.description}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_source_url"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/source"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_website_url"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/website"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+
+
 
         <TextView
             android:id="@+id/txt_developer_label"
@@ -82,7 +108,22 @@
             style="@style/text_details_value"
             android:text="@{app.version}"
             app:layout_constraintBaseline_toBaselineOf="@id/txt_version_label"
+
             app:layout_constraintStart_toStartOf="@id/txt_developer_value" />
 
+        <TextView
+            android:id="@+id/txt_uuid_label"
+            style="@style/text_details_label"
+            android:layout_marginTop="4dp"
+            android:text="@string/app_uuid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_version_label" />
+
+        <TextView
+            android:id="@+id/txt_uuid_value"
+            style="@style/text_details_value"
+            android:text="@{app.UUID}"
+            app:layout_constraintBaseline_toBaselineOf="@id/txt_uuid_label"
+            app:layout_constraintStart_toStartOf="@id/txt_developer_value" />
     </LinearLayout>
 </layout>

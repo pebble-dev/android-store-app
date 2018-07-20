@@ -20,4 +20,7 @@
     <string name="app_version">VERSION</string>
 
     <string name="transition_name_image" translatable="false">TRANSITION:image</string>
+    <string name="app_uuid">UUID</string>
+    <string name="source">SOURCE</string>
+    <string name="website">WEBSITE</string>
 </resources>

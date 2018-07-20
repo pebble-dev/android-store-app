@@ -30,10 +30,8 @@ public class ApplicationIndexResult implements Parcelable
     public List<Collection> collections = null;
     @JsonProperty("applications")
     public List<Application> applications = null;
-    @JsonProperty("custom_banners")
+    @JsonProperty("banners")
     public List<Object> customBanners = null;
-    @JsonProperty("category_links")
-    public List<CategoryLink> categoryLinks = null;
     @JsonProperty("categories")
     public List<Category> categories = null;
     @JsonIgnore
@@ -49,12 +47,10 @@ public class ApplicationIndexResult implements Parcelable
             instance.collections = new ArrayList<>();
             instance.applications = new ArrayList<>();
             instance.customBanners = new ArrayList<>();
-            instance.categoryLinks = new ArrayList<>();
             instance.categories = new ArrayList<>();
             in.readList(instance.collections, (io.rebble.store.api.model.Collection.class.getClassLoader()));
             in.readList(instance.applications, (Application.class.getClassLoader()));
             in.readList(instance.customBanners, (Object.class.getClassLoader()));
-            in.readList(instance.categoryLinks, (io.rebble.store.api.model.CategoryLink.class.getClassLoader()));
             in.readList(instance.categories, (Category.class.getClassLoader()));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
             return instance;
@@ -81,7 +77,6 @@ public class ApplicationIndexResult implements Parcelable
         dest.writeList(collections);
         dest.writeList(applications);
         dest.writeList(customBanners);
-        dest.writeList(categoryLinks);
         dest.writeList(categories);
         dest.writeValue(additionalProperties);
     }

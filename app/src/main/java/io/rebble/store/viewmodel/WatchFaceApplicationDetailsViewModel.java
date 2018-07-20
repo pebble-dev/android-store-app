@@ -16,11 +16,11 @@ public class WatchFaceApplicationDetailsViewModel {
     }
 
     public boolean isBackdropExpanded() {
-        return application.bannerImage != null;
+        return application.headerImages.get(0) != null;
     }
 
     public String getBackdropImageUrl() {
-        return application.bannerImage;
+        return application.headerImages.get(0);
     }
 
     public String getTitle() {
@@ -52,6 +52,22 @@ public class WatchFaceApplicationDetailsViewModel {
     }
 
     public String getVersion() {
-        return application.version;
+        return application.latestRelease.version;
+    }
+
+    public String getUUID() {
+        return application.uuid;
+    }
+
+    public String getPbwFile() {
+        return application.latestRelease.pbwFile;
+    }
+
+    public String getWebsite() {
+        return application.website;
+    }
+
+    public String getSource() {
+        return application.source;
     }
 }

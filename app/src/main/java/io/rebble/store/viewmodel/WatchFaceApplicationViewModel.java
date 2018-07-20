@@ -19,7 +19,7 @@ public class WatchFaceApplicationViewModel {
     }
 
     public String getBackdropImageUrl() {
-        return application.bannerImage;
+        return application.headerImages.get(0);
     }
 
     public String getName() {

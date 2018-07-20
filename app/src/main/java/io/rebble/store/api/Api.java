@@ -25,7 +25,7 @@ public class Api {
 
     public Api() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://dev-portal.getpebble.com/api/")
+                .baseUrl("https://appstore-api.rebble.io/api/v1/")
                 .client(provideOkHttpClient())
                 .addConverterFactory(JacksonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

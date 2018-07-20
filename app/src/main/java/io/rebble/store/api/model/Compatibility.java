@@ -15,19 +15,31 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "platform",
-    "jsv",
-    "hardware"
+    "android",
+    "aplite",
+    "basalt",
+    "chalk",
+    "diorite",
+    "emery",
+    "ios"
 })
 public class Compatibility implements Parcelable
 {
 
-    @JsonProperty("platform")
-    public Boolean platform;
-    @JsonProperty("jsv")
-    public Boolean jsv;
-    @JsonProperty("hardware")
-    public Boolean hardware;
+    @JsonProperty("android")
+    public Boolean android;
+    @JsonProperty("aplite")
+    public Boolean aplite;
+    @JsonProperty("basalt")
+    public Boolean basalt;
+    @JsonProperty("chalk")
+    public Boolean chalk;
+    @JsonProperty("diorite")
+    public Boolean diorite;
+    @JsonProperty("emery")
+    public Boolean emery;
+    @JsonProperty("ios")
+    public Boolean iphone;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<Compatibility> CREATOR = new Creator<Compatibility>() {
@@ -38,9 +50,13 @@ public class Compatibility implements Parcelable
         })
         public Compatibility createFromParcel(Parcel in) {
             Compatibility instance = new Compatibility();
-            instance.platform = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-            instance.jsv = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-            instance.hardware = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.android = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.aplite = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.basalt = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.chalk = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.diorite = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.emery = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.iphone = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
             return instance;
         }
@@ -63,9 +79,13 @@ public class Compatibility implements Parcelable
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(platform);
-        dest.writeValue(jsv);
-        dest.writeValue(hardware);
+        dest.writeValue(android);
+        dest.writeValue(aplite);
+        dest.writeValue(basalt);
+        dest.writeValue(chalk);
+        dest.writeValue(diorite);
+        dest.writeValue(emery);
+        dest.writeValue(iphone);
         dest.writeValue(additionalProperties);
     }
 

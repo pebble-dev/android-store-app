@@ -9,10 +9,10 @@ import rx.Observable;
  */
 
 public interface ApiService {
-    @GET("categories/index")
+    @GET("home/apps")
     Observable<ApplicationIndexResult> getApplicationIndex();
 
 
-    @GET("categories/faces")
+    @GET("home/watchfaces")
     Observable<ApplicationIndexResult> getWatchfaceIndex();
 }

@@ -42,6 +42,7 @@ public class WatchFaceApplicationDetailsActivity extends AppCompatActivity {
                 Uri uri = getIntent().getData();
                 String appId = uri.getQueryParameter("app");
                 Toast.makeText(getApplicationContext(),appId, Toast.LENGTH_SHORT).show();
+                Log.d("Error",appId);
             }
             else {
                 if (getIntent().hasExtra(EXTRA_WATCHFACE_APP_DETAILS)) {
@@ -54,7 +55,7 @@ public class WatchFaceApplicationDetailsActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             //App install now goes to browser. Needs to go to Gadgetbridge or Pebbleapp instead.
                             Intent openPbw = new Intent(Intent.ACTION_VIEW);
-                            openPbw.setData(Uri.parse(application.pbwFile));
+                            openPbw.setData(Uri.parse(application.latestRelease.pbwFile));
                             startActivity(openPbw);
                         }
                     });

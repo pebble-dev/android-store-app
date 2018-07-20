@@ -26,15 +26,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Collection implements Parcelable
 {
 
-    @JsonProperty("id")
-    public String id;
-    @JsonProperty("href")
+    @JsonProperty("links")
     public String href;
     @JsonProperty("name")
     public String name;
-    @JsonProperty("featured")
-    public Boolean featured;
-    @JsonProperty("applications")
+    @JsonProperty("slug")
+    public String slug;
+    @JsonProperty("application_ids")
     public List<String> applications = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -46,10 +44,8 @@ public class Collection implements Parcelable
         })
         public Collection createFromParcel(Parcel in) {
             Collection instance = new Collection();
-            instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.href = ((String) in.readValue((String.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
-            instance.featured = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
             instance.applications = new ArrayList<>();
             in.readList(instance.applications, (String.class.getClassLoader()));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
@@ -74,10 +70,8 @@ public class Collection implements Parcelable
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
         dest.writeValue(href);
         dest.writeValue(name);
-        dest.writeValue(featured);
         dest.writeList(applications);
         dest.writeValue(additionalProperties);
     }

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +83,7 @@ public class WatchFaceApplicationListFragment extends Fragment {
             public void onError(Throwable throwable) {
                 String cause = throwable.getLocalizedMessage();
                 Toast.makeText(getActivity(), cause, Toast.LENGTH_SHORT).show();
+                Log.d("Error", cause);
             }
 
             @Override
